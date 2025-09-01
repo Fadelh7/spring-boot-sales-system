@@ -1,0 +1,36 @@
+@startuml
+title Sales System - Class Diagram
+
+class Product {
+  Long id
+  String name
+  String description
+  String category
+  Instant creationDate
+}
+
+class Client {
+  Long id
+  String firstName
+  String lastName
+  String mobile
+}
+
+class Sale {
+  Long id
+  Instant creationDate
+  String seller
+  BigDecimal total
+}
+
+class SaleTransaction {
+  Long id
+  Integer quantity
+  BigDecimal price
+}
+
+Client "1" -- "*" Sale : places
+Sale "1" o-- "*" SaleTransaction : contains
+SaleTransaction "*" --> "1" Product : for
+
+@enduml

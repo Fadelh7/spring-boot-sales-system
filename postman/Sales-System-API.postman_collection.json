@@ -1,0 +1,492 @@
+{
+	"info": {
+		"_postman_id": "sales-system-api-collection",
+		"name": "Sales System API",
+		"description": "Complete API collection for the Spring Boot Sales System with Products, Clients, and Sales management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "sales-system"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "List All Products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": ["{{baseUrl}}"],
+							"path": ["products"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Gaming Laptop\",\n  \"description\": \"High-performance gaming laptop with RTX graphics\",\n  \"category\": \"Electronics\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": ["{{baseUrl}}"],
+							"path": ["products"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Gaming Laptop Pro\",\n  \"description\": \"Updated high-performance gaming laptop with RTX 4080\",\n  \"category\": \"Electronics\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products/{{productId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["products", "{{productId}}"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "List All Clients",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/clients",
+							"host": ["{{baseUrl}}"],
+							"path": ["clients"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Client",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"mobile\": \"+1-555-123-4567\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/clients",
+							"host": ["{{baseUrl}}"],
+							"path": ["clients"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Client",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"mobile\": \"+1-555-987-6543\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/clients/{{clientId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["clients", "{{clientId}}"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sales",
+			"item": [
+				{
+					"name": "List All Sales",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/sales",
+							"host": ["{{baseUrl}}"],
+							"path": ["sales"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Sale with Single Transaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"clientId\": 1,\n  \"seller\": \"Alice Johnson\",\n  \"transactions\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 1,\n      \"price\": 1299.99\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/sales",
+							"host": ["{{baseUrl}}"],
+							"path": ["sales"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Sale with Multiple Transactions",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"clientId\": 1,\n  \"seller\": \"Bob Wilson\",\n  \"transactions\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 2,\n      \"price\": 1199.99\n    },\n    {\n      \"productId\": 2,\n      \"quantity\": 1,\n      \"price\": 49.99\n    },\n    {\n      \"productId\": 3,\n      \"quantity\": 3,\n      \"price\": 25.50\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/sales",
+							"host": ["{{baseUrl}}"],
+							"path": ["sales"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Sale Transactions",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"seller\": \"Charlie Brown\",\n  \"transactions\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 3,\n      \"price\": 1099.99\n    },\n    {\n      \"productId\": 2,\n      \"quantity\": 2,\n      \"price\": 39.99\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/sales/{{saleId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["sales", "{{saleId}}"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sample Data Setup",
+			"item": [
+				{
+					"name": "Create Sample Products",
+					"item": [
+						{
+							"name": "Create Product - Gaming Mouse",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Gaming Mouse\",\n  \"description\": \"RGB gaming mouse with programmable buttons\",\n  \"category\": \"Electronics\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/products",
+									"host": ["{{baseUrl}}"],
+									"path": ["products"]
+								}
+							}
+						},
+						{
+							"name": "Create Product - Mechanical Keyboard",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Mechanical Keyboard\",\n  \"description\": \"Cherry MX Blue switches mechanical keyboard\",\n  \"category\": \"Electronics\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/products",
+									"host": ["{{baseUrl}}"],
+									"path": ["products"]
+								}
+							}
+						},
+						{
+							"name": "Create Product - USB Cable",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"USB-C Cable\",\n  \"description\": \"3-meter USB-C to USB-A cable\",\n  \"category\": \"Accessories\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/products",
+									"host": ["{{baseUrl}}"],
+									"path": ["products"]
+								}
+							}
+						}
+					]
+				},
+				{
+					"name": "Create Sample Clients",
+					"item": [
+						{
+							"name": "Create Client - Jane Smith",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Smith\",\n  \"mobile\": \"+1-555-234-5678\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/clients",
+									"host": ["{{baseUrl}}"],
+									"path": ["clients"]
+								}
+							}
+						},
+						{
+							"name": "Create Client - Mike Johnson",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"firstName\": \"Mike\",\n  \"lastName\": \"Johnson\",\n  \"mobile\": \"+1-555-345-6789\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/clients",
+									"host": ["{{baseUrl}}"],
+									"path": ["clients"]
+								}
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Error Testing",
+			"item": [
+				{
+					"name": "Test Validation Error - Empty Product Name",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"\",\n  \"description\": \"This should fail validation\",\n  \"category\": \"Test\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": ["{{baseUrl}}"],
+							"path": ["products"]
+						}
+					}
+				},
+				{
+					"name": "Test Not Found Error - Update Non-Existent Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Non-Existent Product\",\n  \"description\": \"This should return 404\",\n  \"category\": \"Test\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products/999",
+							"host": ["{{baseUrl}}"],
+							"path": ["products", "999"]
+						}
+					}
+				},
+				{
+					"name": "Test Sale with Invalid Client ID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"clientId\": 999,\n  \"seller\": \"Test Seller\",\n  \"transactions\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 1,\n      \"price\": 100.00\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/sales",
+							"host": ["{{baseUrl}}"],
+							"path": ["sales"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "productId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "clientId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "saleId",
+			"value": "1",
+			"type": "string"
+		}
+	]
+}
