@@ -1,6 +1,110 @@
 # Spring Boot Sales System - Complete Implementation
 
-## 📋 Project Overview
+## � Quick Start Guide
+
+### Prerequisites
+- **JDK 17 or 21** (JDK 24 not compatible)
+- **Windows PowerShell** (for running commands)
+
+### Step 1: Setup Environment
+```powershell
+# Set JAVA_HOME to JDK 17 or 21
+$env:JAVA_HOME = "C:\Program Files\Java\jdk-17"  # Adjust path to your JDK
+$env:Path = "$env:JAVA_HOME\bin;$env:Path"
+
+# Verify Java version
+java -version  # Should show 17.x or 21.x
+```
+
+### Step 2: Build and Start the Application
+```powershell
+# Navigate to project directory
+cd "C:\Users\Lenovo\Documents\GitHub\spring-boot-quiz"
+
+# Build and test the project
+.\mvnw.cmd clean verify
+
+# Start the application
+.\mvnw.cmd spring-boot:run
+```
+
+**✅ Application will start on http://localhost:8080**
+
+### Step 3: Test with Swagger UI (Interactive API Documentation)
+
+1. **Open Swagger UI**: http://localhost:8080/swagger-ui.html
+2. **Create a Product**:
+   - Click on `product-controller` → `POST /products`
+   - Click "Try it out"
+   - Use this sample data:
+   ```json
+   {
+     "name": "Laptop",
+     "description": "Gaming laptop",
+     "category": "Electronics"
+   }
+   ```
+   - Click "Execute" → Should return `201 Created`
+
+3. **Create a Client**:
+   - Go to `client-controller` → `POST /clients`
+   - Use sample data:
+   ```json
+   {
+     "firstName": "John",
+     "lastName": "Doe", 
+     "mobile": "+1234567890"
+   }
+   ```
+
+4. **Create a Sale**:
+   - Go to `sale-controller` → `POST /sales`
+   - Use sample data:
+   ```json
+   {
+     "clientId": 1,
+     "seller": "Alice Smith",
+     "transactions": [
+       {
+         "productId": 1,
+         "quantity": 2,
+         "price": 999.99
+       }
+     ]
+   }
+   ```
+
+5. **View Results**: Use GET endpoints to see created data and check audit logs in console
+
+### Step 4: Test with Postman Collection
+
+1. **Import Collection**:
+   - Open Postman
+   - Click "Import" → "Upload Files"
+   - Select: `postman/Sales-System-API.postman_collection.json`
+
+2. **Set Base URL**:
+   - Edit collection → Variables tab
+   - Set `baseUrl` = `http://localhost:8080`
+
+3. **Run Test Sequence**:
+   - **Create Product** → Execute request
+   - **Create Client** → Execute request  
+   - **Create Sale** → Execute request
+   - **Get All Sales** → Verify data
+   - **Update Sale** → Test quantity/price changes
+
+### Step 5: Database Console (Optional)
+- **Access H2 Console**: http://localhost:8080/h2-console
+- **Connection Settings**:
+  - JDBC URL: `jdbc:h2:mem:salesdb`
+  - Username: `sa`
+  - Password: (leave blank)
+- **Query Data**: `SELECT * FROM SALE;` to see sales with audit logs
+
+---
+
+## �📋 Project Overview
 
 This is a comprehensive Spring Boot REST API implementation for a simple sales system that manages Products, Clients, and Sales operations with complete audit logging. The project fulfills all requirements of the Spring Boot Quiz specification.
 
@@ -271,38 +375,5 @@ docs/uml/class-diagram.puml                 # PlantUML class diagram
 postman/Sales-System-API.postman_collection.json  # API testing collection
 ```
 
-## 🎯 Key Features Implemented
 
-✅ **Complete CRUD Operations** for Products, Clients, and Sales  
-✅ **Multiple Transaction Support** in single sale creation/updates  
-✅ **Automatic Total Calculation** and recalculation on updates  
-✅ **Comprehensive Validation** with detailed error responses  
-✅ **Audit Logging** for all sale transaction changes  
-✅ **Interactive API Documentation** with Swagger UI  
-✅ **Production-Ready Exception Handling**  
-✅ **Unit and Integration Testing**  
-✅ **CI/CD Pipeline** with GitHub Actions  
-✅ **Database Console** for development debugging  
-✅ **Entity Relationship Diagram**  
-✅ **Postman Testing Collection**
 
----
-
-## 📋 Quiz Requirements Verification
-
-| Requirement | Status | Implementation |
-|-------------|--------|----------------|
-| Products fetch (id, name, description, category, creation date) | ✅ COMPLETE | `GET /products` returns ProductDto with all fields |
-| Products create | ✅ COMPLETE | `POST /products` with validation |
-| Products update | ✅ COMPLETE | `PUT /products/{id}` with existence check |
-| Clients fetch (id, name, last name, mobile) | ✅ COMPLETE | `GET /clients` returns ClientDto with all fields |
-| Clients create | ✅ COMPLETE | `POST /clients` with validation |  
-| Clients edit | ✅ COMPLETE | `PUT /clients/{id}` with existence check |
-| Sales fetch (id, creation date, client, seller, total) | ✅ COMPLETE | `GET /sales` returns SaleResponse with all fields |
-| Sales create with multiple transactions | ✅ COMPLETE | `POST /sales` accepts array of transactions |
-| Sales edit quantities and prices | ✅ COMPLETE | `PUT /sales/{id}` updates transactions and recalculates total |
-| Log all update operations on sale transactions | ✅ COMPLETE | Event-driven audit logging with `@TransactionalEventListener` |
-| Class diagram file | ✅ COMPLETE | PlantUML file at `docs/uml/class-diagram.puml` |
-| Github link or project zip | ✅ COMPLETE | Complete GitHub-ready project with CI/CD |
-
-**🎉 ALL REQUIREMENTS SUCCESSFULLY IMPLEMENTED**
